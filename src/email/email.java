@@ -29,11 +29,20 @@ public class email extends javax.swing.JFrame {
     /**
      * Creates new form email
      */
+   static String fromemailpassword;
     public email() {
         initComponents();
+        
         showDate();
         showTime();
     }
+
+    email(String a) {
+         initComponents();
+         fromemailpassword= a;
+    }
+    
+    
     void showDate(){
        Date d1=new Date();
        SimpleDateFormat s=new SimpleDateFormat("dd/MM/yyyy");
@@ -284,7 +293,6 @@ System.exit(0);        // TODO add your handling code here:
         if(to.getText().matches(regex))   {
         String t=to.getText();//the recipient email address
         String fromemail=from.getText();//the sender's email address
-        String fromemailpassword = "";//PASSWORD OF FROM EMAIL
         String s=subject.getText();
         String m= message.getText();
         Properties properties = new Properties();
@@ -350,7 +358,7 @@ System.exit(0);        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;
-    private javax.swing.JTextField from;
+    public static javax.swing.JTextField from;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
