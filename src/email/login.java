@@ -206,8 +206,9 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
             ResultSet rs = p.executeQuery();
             if(rs.next()){
                  String a = pass.getText();
+                 String e1 = em.getText();
                  try{
-                 email e = new email(a);
+                 email e = new email(a,e1);
                  e.from.setText(email);
                  this.setVisible(false);
                  e.setVisible(true);
