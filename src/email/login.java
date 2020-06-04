@@ -208,8 +208,12 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
                  String a = pass.getText();
                  String e1 = em.getText();
                  try{
-                 email e = new email(a,e1);
-                 e.from.setText(email);
+                     String w = "Welcome";
+                     String ff = rs.getString("first_name");
+                     String ll = rs.getString("last_name");
+                     String q = w.concat(" ").concat(ff).concat(" ").concat(ll);
+                 email e = new email(a,q);
+                 e.from.setText(e1);
                  this.setVisible(false);
                  e.setVisible(true);
                  }
