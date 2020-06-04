@@ -103,7 +103,7 @@ public class login extends javax.swing.JFrame {
         });
 
         sign1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        sign1.setText("SIGN IN");
+        sign1.setText("SIGN UP");
         sign1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         sign1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +174,6 @@ public class login extends javax.swing.JFrame {
                 .addComponent(jLabel5))
         );
 
-        jLabel1.getAccessibleContext().setAccessibleName("");
         sign.getAccessibleContext().setAccessibleName("Sign In");
 
         pack();
