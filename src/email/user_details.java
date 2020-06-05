@@ -167,6 +167,17 @@ public class user_details extends javax.swing.JFrame {
 
         jLabel11.setText("Version 1.0.0");
 
+        ps.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                psFocusLost(evt);
+            }
+        });
+        ps.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                psKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -361,6 +372,20 @@ public class user_details extends javax.swing.JFrame {
            phn.setEditable(false);
            }
     }//GEN-LAST:event_phnKeyPressed
+
+    private void psKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_psKeyPressed
+      
+
+
+    }//GEN-LAST:event_psKeyPressed
+
+    private void psFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psFocusLost
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$";
+      String pass = ps.getText();
+      if(!pass.equals(regex)){
+          JOptionPane.showMessageDialog(this, "Enter Valid Password");
+      }
+    }//GEN-LAST:event_psFocusLost
 
     /**
      * @param args the command line arguments
