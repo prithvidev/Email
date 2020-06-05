@@ -7,6 +7,8 @@ package email;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -380,11 +382,15 @@ public class user_details extends javax.swing.JFrame {
     }//GEN-LAST:event_psKeyPressed
 
     private void psFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psFocusLost
-        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$";
-      String pass = ps.getText();
-      if(!pass.equals(regex)){
-          JOptionPane.showMessageDialog(this, "Enter Valid Password");
-      }
+      String regex = "^(?=.*[0-9])"
+                       + "(?=.*[a-z])(?=.*[A-Z])"
+                       + "(?=.*[@#$%^&+=])"
+                       + "(?=\\S+$).{8,20}$"; 
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(ps.getText());
+        if(!m.matches()){
+            JOptionPane.showMessageDialog(this,"ENTER VALID PASSWORD");
+        }
     }//GEN-LAST:event_psFocusLost
 
     /**
