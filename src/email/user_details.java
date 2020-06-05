@@ -140,6 +140,11 @@ public class user_details extends javax.swing.JFrame {
                 cActionPerformed(evt);
             }
         });
+        c.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cKeyPressed(evt);
+            }
+        });
 
         jLabel8.setText("Address");
 
@@ -148,10 +153,20 @@ public class user_details extends javax.swing.JFrame {
                 addActionPerformed(evt);
             }
         });
+        add.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                addKeyPressed(evt);
+            }
+        });
 
         ci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ciActionPerformed(evt);
+            }
+        });
+        ci.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ciKeyPressed(evt);
             }
         });
 
@@ -162,6 +177,11 @@ public class user_details extends javax.swing.JFrame {
         pc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pcActionPerformed(evt);
+            }
+        });
+        pc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pcKeyPressed(evt);
             }
         });
 
@@ -392,6 +412,46 @@ public class user_details extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"ENTER VALID PASSWORD");
         }
     }//GEN-LAST:event_psFocusLost
+
+    private void cKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cKeyPressed
+        char c11 = evt.getKeyChar();
+        if(Character.isLetter(c11) || Character.isWhitespace(c11) || Character.isISOControl(c11)){
+            c.setEditable(true);
+        }
+        else{
+            c.setEditable(false);
+        }
+    }//GEN-LAST:event_cKeyPressed
+
+    private void addKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addKeyPressed
+       char c = evt.getKeyChar();
+        if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            add.setEditable(true);
+        }
+        else{
+            add.setEditable(false);
+        }
+    }//GEN-LAST:event_addKeyPressed
+
+    private void ciKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ciKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            ci.setEditable(true);
+        }
+        else{
+            ci.setEditable(false);
+        }
+    }//GEN-LAST:event_ciKeyPressed
+
+    private void pcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pcKeyPressed
+        String p1 = pc.getText();
+       char c = evt.getKeyChar(); 
+       
+        if(p1.length()<7 || evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE  || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+            pc.setEditable(true);
+        }else{pc.setEditable(false);}
+       
+    }//GEN-LAST:event_pcKeyPressed
 
     /**
      * @param args the command line arguments
