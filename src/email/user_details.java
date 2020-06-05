@@ -5,6 +5,7 @@
  */
 package email;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -348,7 +349,17 @@ public class user_details extends javax.swing.JFrame {
     }//GEN-LAST:event_lnameKeyPressed
 
     private void phnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phnKeyPressed
+       String p = phn.getText();
+       char c = evt.getKeyChar();
        
+       if(c >= '0' || c<='9'){
+           if(p.length()<10 || evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE  || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               phn.setEditable(true);
+           }else{phn.setEditable(false);}
+       }
+       else{
+           phn.setEditable(false);
+           }
     }//GEN-LAST:event_phnKeyPressed
 
     /**
