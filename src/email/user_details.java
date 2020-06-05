@@ -5,6 +5,8 @@
  */
 package email;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PrithviDevKumar
@@ -40,7 +42,6 @@ public class user_details extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         em = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        ps = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         c = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -53,6 +54,7 @@ public class user_details extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        ps = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -88,6 +90,11 @@ public class user_details extends javax.swing.JFrame {
 
         jLabel5.setText("Email");
 
+        em.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emFocusLost(evt);
+            }
+        });
         em.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emActionPerformed(evt);
@@ -95,12 +102,6 @@ public class user_details extends javax.swing.JFrame {
         });
 
         jLabel6.setText("Password");
-
-        ps.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                psActionPerformed(evt);
-            }
-        });
 
         jLabel7.setText("Country");
 
@@ -155,7 +156,7 @@ public class user_details extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -163,7 +164,7 @@ public class user_details extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(ps, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ps))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -222,9 +223,9 @@ public class user_details extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(em, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(ps, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(ps))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
@@ -254,7 +255,6 @@ public class user_details extends javax.swing.JFrame {
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jButton3.getAccessibleContext().setAccessibleName("");
         jButton3.getAccessibleContext().setAccessibleDescription("");
 
         pack();
@@ -267,10 +267,6 @@ public class user_details extends javax.swing.JFrame {
     private void emActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emActionPerformed
-
-    private void psActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_psActionPerformed
 
     private void cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cActionPerformed
         // TODO add your handling code here:
@@ -287,6 +283,14 @@ public class user_details extends javax.swing.JFrame {
     private void pcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pcActionPerformed
+
+    private void emFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emFocusLost
+    String regex = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
+    if(!em.getText().equals(regex));{
+        JOptionPane.showMessageDialog(null, "ENTER VALID EMAIL");
+        em.setText("");
+    }// TODO add your handling code here:
+    }//GEN-LAST:event_emFocusLost
 
     /**
      * @param args the command line arguments
@@ -349,6 +353,6 @@ public class user_details extends javax.swing.JFrame {
     private javax.swing.JTextField lname;
     private javax.swing.JTextField pc;
     private javax.swing.JTextField phn;
-    private javax.swing.JTextField ps;
+    private javax.swing.JPasswordField ps;
     // End of variables declaration//GEN-END:variables
 }
