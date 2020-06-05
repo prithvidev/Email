@@ -78,13 +78,40 @@ public class user_details extends javax.swing.JFrame {
 
         jLabel2.setText("First name");
 
+        fname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fnameFocusLost(evt);
+            }
+        });
+        fname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fnameKeyPressed(evt);
+            }
+        });
+
         jLabel3.setText("Last name");
+
+        lname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lnameFocusLost(evt);
+            }
+        });
+        lname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lnameKeyPressed(evt);
+            }
+        });
 
         jLabel4.setText("Phone Number");
 
         phn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phnActionPerformed(evt);
+            }
+        });
+        phn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phnKeyPressed(evt);
             }
         });
 
@@ -287,10 +314,42 @@ public class user_details extends javax.swing.JFrame {
     private void emFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emFocusLost
     String regex = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
     if(!em.getText().equals(regex));{
-        JOptionPane.showMessageDialog(null, "ENTER VALID EMAIL");
+        JOptionPane.showMessageDialog(this, "ENTER VALID EMAIL");
         em.setText("");
-    }// TODO add your handling code here:
+    }
     }//GEN-LAST:event_emFocusLost
+
+    private void fnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fnameFocusLost
+
+    }//GEN-LAST:event_fnameFocusLost
+
+    private void lnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lnameFocusLost
+        
+    }//GEN-LAST:event_lnameFocusLost
+
+    private void fnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnameKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            fname.setEditable(true);
+        }
+        else{
+            fname.setEditable(false);
+        }
+    }//GEN-LAST:event_fnameKeyPressed
+
+    private void lnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lnameKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            lname.setEditable(true);
+        }
+        else{
+            lname.setEditable(false);
+        }
+    }//GEN-LAST:event_lnameKeyPressed
+
+    private void phnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phnKeyPressed
+       
+    }//GEN-LAST:event_phnKeyPressed
 
     /**
      * @param args the command line arguments
