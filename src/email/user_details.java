@@ -64,6 +64,7 @@ public class user_details extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         ps = new javax.swing.JPasswordField();
         error = new javax.swing.JLabel();
+        error1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -262,8 +263,10 @@ public class user_details extends javax.swing.JFrame {
                                     .addComponent(ci, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pc, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(error1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,7 +303,8 @@ public class user_details extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(ps, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(ps, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(error1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
@@ -363,11 +367,14 @@ public class user_details extends javax.swing.JFrame {
     String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
     Pattern p = Pattern.compile(regex);
     Matcher m = p.matcher(em.getText());
+    
     if(!m.matches()){
         error.setIcon(new ImageIcon("E:\\Netbeans project new\\Email\\src\\email\\Danger.png"));
         em.setText("");
     }
-    
+    else{
+            error.setIcon(new ImageIcon("E:\\Netbeans project new\\Email\\src\\email\\Yes.png"));
+         }
     }//GEN-LAST:event_emFocusLost
 
     private void fnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fnameFocusLost
@@ -419,14 +426,19 @@ public class user_details extends javax.swing.JFrame {
     }//GEN-LAST:event_psKeyPressed
 
     private void psFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psFocusLost
-      String regex = "^(?=.*[0-9])"
+        String regex = "^(?=.*[0-9])"
                        + "(?=.*[a-z])(?=.*[A-Z])"
                        + "(?=.*[@#$%^&+=])"
                        + "(?=\\S+$).{8,20}$"; 
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(ps.getText());
+        
         if(!m.matches()){
-            JOptionPane.showMessageDialog(this,"ENTER VALID PASSWORD");
+            error1.setIcon(new ImageIcon("E:\\Netbeans project new\\Email\\src\\email\\Danger.png"));
+            ps.setText("");
+        }
+        else{
+            error1.setIcon(new ImageIcon("E:\\Netbeans project new\\Email\\src\\email\\Yes.png"));
         }
     }//GEN-LAST:event_psFocusLost
 
@@ -565,6 +577,7 @@ public class user_details extends javax.swing.JFrame {
     private javax.swing.JTextField ci;
     private javax.swing.JTextField em;
     private javax.swing.JLabel error;
+    private javax.swing.JLabel error1;
     private javax.swing.JTextField fname;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
