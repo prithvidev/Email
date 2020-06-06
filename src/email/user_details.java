@@ -409,13 +409,16 @@ public class user_details extends javax.swing.JFrame {
        String p = phn.getText();
        char c = evt.getKeyChar();
        
-       if(c >= '0' || c<='9'){
-           if(p.length()<10 || evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE  || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+       if(evt.getKeyChar() >= '0' || evt.getKeyChar()<='9'){
+           if(p.length()<=10){
                phn.setEditable(true);
            }else{phn.setEditable(false);}
        }
        else{
-           phn.setEditable(false);
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE  || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               phn.setEditable(true);
+           }
+           else{phn.setEditable(false);}
            }
     }//GEN-LAST:event_phnKeyPressed
 
