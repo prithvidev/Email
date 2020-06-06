@@ -6,6 +6,10 @@
 package email;
 
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -186,6 +190,11 @@ public class user_details extends javax.swing.JFrame {
         });
 
         jButton1.setText("REGISTER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Version 1.0.0");
 
@@ -452,6 +461,60 @@ public class user_details extends javax.swing.JFrame {
         }else{pc.setEditable(false);}
        
     }//GEN-LAST:event_pcKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String first = fname.getText();
+        String last = lname.getText();
+        String phone = phn.getText();
+        String email= em.getText();
+        String password = ps.getText();
+        String country = c.getText();
+        String address = add.getText();
+        String city = ci.getText();
+        String postal = pc.getText();
+        
+        try{
+            Connection con;
+            myconnection registercon = new myconnection();
+            con = registercon.getRegisterConnection();
+            String sql = "SELECT * FROM DETAILS WHERE email="+em.getText();
+            PreparedStatement p = con.prepareStatement(sql);
+            ResultSet rs = p.executeQuery(sql);
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "ALREADY REGISTERED");
+                 fname.setText("");
+                 lname.setText("");
+                 phn.setText("");
+                 em.setText("");
+                 ps.setText("");
+                 c.setText("");
+                 add.setText("");
+                 ci.setText("");
+                 pc.setText("");  
+            }
+            else{
+            String query = "insert into records(first_name,last_name,phn,email,password,country,address,city,postal code) values(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement p1 = con.prepareStatement(query);
+            p1.setString(1,first);
+            p1.setString(2, last);
+            p1.setString(3, phone);
+            p1.setString(4, email);
+            p1.setString(5, password);
+            p1.setString(6, country);
+            p1.setString(7, address);
+            p1.setString(8, city);
+            p1.setString(9,postal);
+            
+            p1.executeUpdate();
+            JOptionPane.showMessageDialog(null,"USER REGISTERED SUCCESSFULLY");
+            
+            }
+            
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(this, "SQL EXCEPTION");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
