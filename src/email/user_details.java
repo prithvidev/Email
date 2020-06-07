@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -494,13 +496,13 @@ public class user_details extends javax.swing.JFrame {
         String country = c.getText();
         String address = add.getText();
         String city = ci.getText();
-        String postal = pc.getText();
+        int postal = Integer.parseInt(pc.getText());
         
         try{
             Connection con;
             myconnection registercon = new myconnection();
             con = registercon.getRegisterConnection();
-            String sql = "SELECT * FROM DETAILS WHERE email="+em.getText();
+            String sql = "select * from details where email= '"+email+"'";
             PreparedStatement p = con.prepareStatement(sql);
             ResultSet rs = p.executeQuery(sql);
             if(rs.next()){
@@ -513,11 +515,13 @@ public class user_details extends javax.swing.JFrame {
                  c.setText("");
                  add.setText("");
                  ci.setText("");
-                 pc.setText("");  
+                 pc.setText("");
+                 
             }
             else{
-            String query = "insert into records(first_name,last_name,phn,email,password,country,address,city,postal code) values(?,?,?,?,?,?,?,?,?)";
+            String query = "insert into details(first_name,last_name,phno,email,Password,country,Address,City,PostalCode)values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement p1 = con.prepareStatement(query);
+            
             p1.setString(1,first);
             p1.setString(2, last);
             p1.setString(3, phone);
@@ -526,16 +530,15 @@ public class user_details extends javax.swing.JFrame {
             p1.setString(6, country);
             p1.setString(7, address);
             p1.setString(8, city);
-            p1.setString(9,postal);
+            p1.setInt(9, postal);
             
             p1.executeUpdate();
             JOptionPane.showMessageDialog(null,"USER REGISTERED SUCCESSFULLY");
             
             }
-            
         }
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(this, "SQL EXCEPTION");
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
