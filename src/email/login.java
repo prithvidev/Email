@@ -80,7 +80,7 @@ public class login extends javax.swing.JFrame {
         sign.getAccessibleContext().setAccessibleName("Sign In");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel3.setText("Unable to Sign in,");
+        jLabel3.setText("Forgotten Password,");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 217, -1, -1));
 
         click_me.setFont(new java.awt.Font("Times New Roman", 2, 10)); // NOI18N
@@ -96,12 +96,17 @@ public class login extends javax.swing.JFrame {
                 click_meMouseExited(evt);
             }
         });
+        click_me.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                click_meActionPerformed(evt);
+            }
+        });
         click_me.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 click_meKeyPressed(evt);
             }
         });
-        getContentPane().add(click_me, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 217, -1, -1));
+        getContentPane().add(click_me, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 213, -1, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/email/1111.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 26, 169, 40));
@@ -204,6 +209,13 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
         ud.setVisible(true);
         
     }//GEN-LAST:event_sign1ActionPerformed
+
+    private void click_meActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_click_meActionPerformed
+        
+        forgotten_pass fp = new forgotten_pass();
+        this.dispose();
+        fp.setVisible(true);
+    }//GEN-LAST:event_click_meActionPerformed
 
     /**
      * @param args the command line arguments
