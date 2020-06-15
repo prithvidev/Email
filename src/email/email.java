@@ -99,6 +99,7 @@ public class email extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         message = new javax.swing.JTextArea();
         qa = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,6 +210,9 @@ public class email extends javax.swing.JFrame {
         qa.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         qa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(qa, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 47, 157, 17));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/email/background.jpg"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 550));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -331,6 +335,7 @@ System.exit(0);        // TODO add your handling code here:
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
