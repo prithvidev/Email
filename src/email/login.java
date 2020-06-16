@@ -175,12 +175,28 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
                  e.from.setText(e1);
                  this.setVisible(false);
                  e.setVisible(true);
+                 con.close();
                  }
                  catch(Exception ex){};
                 
-                 JOptionPane.showMessageDialog(null, "LOGIN SUCCESSFUL");    
+                 JOptionPane.showMessageDialog(this, "LOGIN SUCCESSFUL");    
             }
-            else{JOptionPane.showMessageDialog(null,"INCORRECT DETAILS");}
+            else{
+                Connection con1;
+                myconnection registercon1 = new myconnection();
+                con1 = registercon1.getRegisterConnection();
+                String sql1 = "Select * from details where email='"+em.getText()+"'";
+                PreparedStatement p1 = con.prepareStatement(sql1);
+                ResultSet rs1 = p1.executeQuery();
+                if(!rs1.next()){
+                JOptionPane.showMessageDialog(this,"INCORRECT EMAIL");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this,"INCORRECT PASSWORD");
+                }
+                con1.close();
+            }
             
             
         } catch (SQLException ex) {
