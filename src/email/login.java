@@ -227,8 +227,8 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
     }//GEN-LAST:event_sign1ActionPerformed
 
     private void click_meActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_click_meActionPerformed
-        
-        forgotten_pass fp = new forgotten_pass();
+        String ema = em.getText();
+        forgotten_pass fp = new forgotten_pass(ema);
         this.dispose();
         fp.setVisible(true);
     }//GEN-LAST:event_click_meActionPerformed
