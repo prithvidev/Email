@@ -23,9 +23,28 @@ public class login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    
+    
     public login() {
         initComponents();
+       
     }
+    
+    /**private void display(){
+        try{
+        Connection c;
+        myconnection rg = new myconnection();
+        c = rg.getRegisterConnection();
+        String sql = "Select * from details where email='"+em.getText()+"'";
+        PreparedStatement p = c.prepareStatement(sql);
+        ResultSet rs = p.executeQuery(sql);
+        if(rs.next()){
+            phone = rs.getString("phno");
+            
+        }
+        }
+        catch(SQLException ex){JOptionPane.showMessageDialog(this, "ERROR SORRY");}
+    }**/
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -23,6 +23,7 @@ public class forgotten_pass extends javax.swing.JFrame {
      * Creates new form forgotten_pass
      */
     String email;
+    String phone;
     public forgotten_pass() {
         initComponents();   
     }
@@ -30,7 +31,8 @@ public class forgotten_pass extends javax.swing.JFrame {
     forgotten_pass(String ema) {
         initComponents();
         email = ema;
-        display();
+        phone = t.getText(); 
+       display();
     }
     
     private void display(){
@@ -49,6 +51,7 @@ public class forgotten_pass extends javax.swing.JFrame {
             jLabel2.setText(text);
             
         }
+        con.close();
         } catch (SQLException ex) {
             Logger.getLogger(forgotten_pass.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -184,10 +187,21 @@ public class forgotten_pass extends javax.swing.JFrame {
     }//GEN-LAST:event_tKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Connection con;
-       myconnection registercon = new myconnection();
-       con = registercon.getRegisterConnection();
-       String sql = "select password from details where email='" ;
+        try {
+            Connection con1;
+            myconnection registercon1 = new myconnection();
+            con1 = registercon1.getRegisterConnection();
+            String sql = "select * from details where email='"+email+"'&& phno='"+phone+"'";
+            PreparedStatement p = con1.prepareStatement(sql);
+            ResultSet rs = p.executeQuery();
+            if(rs.next()){
+                String pass = rs.getString(5);
+                JOptionPane.showMessageDialog(this, pass);
+            }
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(forgotten_pass.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
