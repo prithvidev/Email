@@ -36,7 +36,6 @@ public class user_details extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         fname = new javax.swing.JTextField();
@@ -62,6 +61,7 @@ public class user_details extends javax.swing.JFrame {
         ps = new javax.swing.JPasswordField();
         error = new javax.swing.JLabel();
         error1 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -91,8 +91,6 @@ public class user_details extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 24, 32));
         jButton3.getAccessibleContext().setAccessibleDescription("");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/email/template.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 280, 95));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 95, 360, 10));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -271,6 +269,10 @@ public class user_details extends javax.swing.JFrame {
         getContentPane().add(ps, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 308, 164, 30));
         getContentPane().add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 260, 46, 30));
         getContentPane().add(error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 308, 46, 30));
+
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel13.setText("REGISTRARTION");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 310, 90));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/email/background.jpg"))); // NOI18N
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
@@ -535,10 +537,10 @@ public class user_details extends javax.swing.JFrame {
     private javax.swing.JTextField fname;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
