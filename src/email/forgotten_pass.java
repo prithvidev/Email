@@ -23,7 +23,7 @@ public class forgotten_pass extends javax.swing.JFrame {
      * Creates new form forgotten_pass
      */
     String email;
-    String phone;
+ 
     public forgotten_pass() {
         initComponents();   
     }
@@ -31,7 +31,7 @@ public class forgotten_pass extends javax.swing.JFrame {
     forgotten_pass(String ema) {
         initComponents();
         email = ema;
-        phone = t.getText(); 
+      
        display();
     }
     
@@ -191,11 +191,11 @@ public class forgotten_pass extends javax.swing.JFrame {
             Connection con1;
             myconnection registercon1 = new myconnection();
             con1 = registercon1.getRegisterConnection();
-            String sql = "select * from details where email='"+email+"'&& phno='"+phone+"'";
-            PreparedStatement p = con1.prepareStatement(sql);
+            String sql2 = "select * from details where email='"+email+"'&& phno='"+t.getText()+"'";
+            PreparedStatement p = con1.prepareStatement(sql2);
             ResultSet rs = p.executeQuery();
             if(rs.next()){
-                String pass = rs.getString(5);
+                String pass = rs.getString("Password");
                 JOptionPane.showMessageDialog(this, pass);
             }
             con1.close();

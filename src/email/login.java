@@ -247,9 +247,18 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
 
     private void click_meActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_click_meActionPerformed
         String ema = em.getText();
+        String regex1 ="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"; 
+        if(em.getText().matches(regex1)){
+        if(!em.getText().equals("") ){
         forgotten_pass fp = new forgotten_pass(ema);
         this.dispose();
         fp.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "PLEASE ENTER VALID EMAIL TO CONTINUE", "Login", JOptionPane.INFORMATION_MESSAGE);
+        }
+        }
+        else{JOptionPane.showMessageDialog(this, "PLEASE ENTER VALID EMAIL TO CONTIskjcdbjckdNUE", "Login", JOptionPane.INFORMATION_MESSAGE);}
     }//GEN-LAST:event_click_meActionPerformed
 
     /**
