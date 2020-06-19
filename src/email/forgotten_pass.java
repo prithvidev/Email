@@ -196,8 +196,9 @@ public class forgotten_pass extends javax.swing.JFrame {
             ResultSet rs = p.executeQuery();
             if(rs.next()){
                 String pass = rs.getString("Password");
-                JOptionPane.showMessageDialog(this, pass);
+                JOptionPane.showMessageDialog(this,pass,"Forgot Password",JOptionPane.INFORMATION_MESSAGE);
             }
+            else{JOptionPane.showMessageDialog(this, "RECORD NOT FOUND", "Forgot Password",JOptionPane.INFORMATION_MESSAGE);}
             con1.close();
         } catch (SQLException ex) {
             Logger.getLogger(forgotten_pass.class.getName()).log(Level.SEVERE, null, ex);

@@ -258,7 +258,7 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
             JOptionPane.showMessageDialog(this, "PLEASE ENTER VALID EMAIL TO CONTINUE", "Login", JOptionPane.INFORMATION_MESSAGE);
         }
         }
-        else{JOptionPane.showMessageDialog(this, "PLEASE ENTER VALID EMAIL TO CONTIskjcdbjckdNUE", "Login", JOptionPane.INFORMATION_MESSAGE);}
+        else{JOptionPane.showMessageDialog(this, "PLEASE ENTER VALID EMAIL TO CONTINUE", "Login", JOptionPane.INFORMATION_MESSAGE);}
     }//GEN-LAST:event_click_meActionPerformed
 
     /**
