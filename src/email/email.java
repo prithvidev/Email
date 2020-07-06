@@ -1,18 +1,18 @@
 package email;
 
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.mail.Session;
@@ -20,6 +20,10 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Transport;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,13 +34,16 @@ import javax.mail.Transport;
  *
  * @author PrithviDevKumar
  */
-public class email extends javax.swing.JFrame {
+public final class email extends javax.swing.JFrame {
 
     /**
      * Creates new form email
      */
     static String name;
    static String fromemailpassword;
+   String attachment;
+    Multipart emailContent = new MimeMultipart();
+    MimeBodyPart pdfAttachment = new MimeBodyPart();
    
     public email() {
         initComponents();   
@@ -59,14 +66,10 @@ public class email extends javax.swing.JFrame {
        date.setText(s.format(d1));
    }
    void showTime(){
-       new Timer(0,new ActionListener(){
-       
-           public void actionPerformed(ActionEvent e){
-           
+       new Timer(0, (ActionEvent e) -> {
            Date d1=new Date();
            SimpleDateFormat s=new SimpleDateFormat("hh:mm:ss");
            time.setText(s.format(d1));
-           }
        }).start();
     }
 
@@ -99,6 +102,8 @@ public class email extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         message = new javax.swing.JTextArea();
         qa = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        filename1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -204,12 +209,25 @@ public class email extends javax.swing.JFrame {
         message.setRows(5);
         jScrollPane1.setViewportView(message);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 252, 318, 223));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 252, 318, 160));
 
         qa.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         qa.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         qa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(qa, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 47, 157, 17));
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jButton1.setText("ADD ATTACHMENT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 150, -1));
+
+        filename1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        filename1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(filename1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 320, 20));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/email/background.jpg"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 550));
@@ -267,6 +285,7 @@ System.exit(0);        // TODO add your handling code here:
         properties.put("mail.smtp.host","smtp.gmail.com");
         properties.put("mail.smtp.port","587");
         Session session = Session.getInstance(properties,new javax.mail.Authenticator() {
+           @Override
            protected PasswordAuthentication getPasswordAuthentication(){
            return new PasswordAuthentication(fromemail,fromemailpassword);
            } 
@@ -276,16 +295,48 @@ System.exit(0);        // TODO add your handling code here:
              msg.setFrom(new InternetAddress(fromemail));
              msg.addRecipient(Message.RecipientType.TO,new InternetAddress(t));
              msg.setSubject(s);
-             msg.setText(m);
+             //msg.setText(m);
+             
+            
+             //text part
+             MimeBodyPart textBodypart = new MimeBodyPart();
+             textBodypart.setText(m);
+             
+             //pdf attachment
+             
+             
+             emailContent.addBodyPart(textBodypart);
+             emailContent.addBodyPart(pdfAttachment);
+             
+             msg.setContent(emailContent);
+             
              Transport.send(msg);
              JOptionPane.showMessageDialog(null,"MAIL SENT SUCCESSFULLY");
              to.setText("");subject.setText("");message.setText("");
              
         }
-         catch(Exception ex){System.out.println(ex);}
+         catch(HeadlessException | MessagingException ex){System.out.println(ex);}
         }
         else{JOptionPane.showMessageDialog(null,"INVALID EMAIL");}// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+           JFileChooser chooser = new JFileChooser();
+           chooser.setVisible(true);
+           int y = chooser.showOpenDialog(jPanel1);
+           if(y == JFileChooser.APPROVE_OPTION){
+            File f = chooser.getSelectedFile();
+            String filename = f.getAbsolutePath();
+            String ff = f.getName();
+            filename1.setText(ff);
+            pdfAttachment.attachFile(filename);
+        }
+           else{JOptionPane.showMessageDialog(this, "You Haven't selected any file");}
+        } catch (IOException | MessagingException ex) {
+            Logger.getLogger(email.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,28 +354,24 @@ System.exit(0);        // TODO add your handling code here:
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(email.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(email.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(email.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(email.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new email().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new email().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;
+    private javax.swing.JLabel filename1;
     public static javax.swing.JTextField from;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

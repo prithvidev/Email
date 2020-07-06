@@ -437,7 +437,7 @@ public class user_details extends javax.swing.JFrame {
         String city = ci.getText();
         String postal = pc.getText();
         if(first.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty() || last.isEmpty() || country.isEmpty() || address.isEmpty() || city.isEmpty() || postal.isEmpty())
-        {JOptionPane.showMessageDialog(null,"NO DATA ENETERED");}
+        {JOptionPane.showMessageDialog(null,"Check All Boxes");}
             else{
         try{
             Connection con;

@@ -196,7 +196,7 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
                  e.setVisible(true);
                  con.close();
                  }
-                 catch(Exception ex){};
+                 catch(SQLException ex){}
                 
                  JOptionPane.showMessageDialog(this, "LOGIN SUCCESSFUL");    
             }
@@ -289,10 +289,8 @@ click_me.setForeground(Color.red);        // TODO add your handling code here:
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new login().setVisible(true);
         });
     }
 
