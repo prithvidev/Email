@@ -5,10 +5,12 @@
  */
 package email;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Properties;
+import java.util.Scanner;
+import java.util.Stack;
 import javax.mail.BodyPart;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -28,35 +30,6 @@ public class receiveMail extends javax.swing.JFrame {
      */
     public receiveMail() {
         initComponents();
-        String user = username.getText();
-        String pass = password.getText();
-        Properties properties = System.getProperties();
-        properties.setProperty("mail.store.protocol", "imaps");
-        try{
-            Session session = Session.getDefaultInstance(properties, null);
-            Store store = session.getStore();
-            store.connect("imap.gmail.com","prithvidevkanojia1@gmail.com","Prithvi@03012000");
-            System.out.println(store);
-            
-            Folder inbox = store.getFolder("Inbox");
-            inbox.open(Folder.READ_ONLY);
-            Message messages[] = inbox.getMessages();
-            ArrayList<String> ii = new ArrayList<>();
-            for(Message message : messages){ 
-                System.out.println("_________________________________");
-    System.out.println("Subject: " + message.getSubject());  
-    System.out.println("From: " + message.getFrom()[0]);  
-    Multipart mp = (Multipart) message.getContent();
-            BodyPart bp = mp.getBodyPart(0);
-            System.out.println("SENT DATE:" + message.getSentDate());
-            System.out.println("SUBJECT:" + message.getSubject());
-            System.out.println("CONTENT:" + bp.getContent());
-                System.out.println("___________________________________");
-            }
-            
-        }catch(MessagingException e){e.printStackTrace();
-            System.exit(2);}
-        catch(IOException e1){e1.printStackTrace();}
         
     }
 
@@ -72,25 +45,32 @@ public class receiveMail extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         username = new javax.swing.JLabel();
-        password = new javax.swing.JLabel();
         display = new javax.swing.JScrollPane();
-        display1 = new javax.swing.JLabel();
+        display1 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        password = new javax.swing.JPasswordField();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        username.setText("prithvidevkanojia1@gmail.com");
+        username.setText("prithvi03012000@gmail.com");
 
-        password.setText("Prithvi@03012000");
-
+        display1.setColumns(20);
+        display1.setRows(5);
         display.setViewportView(display1);
 
         jButton2.setText("jButton2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        password.setText("Prithvi@03012000");
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
             }
         });
 
@@ -101,9 +81,9 @@ public class receiveMail extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
             .addComponent(display)
@@ -112,10 +92,10 @@ public class receiveMail extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
+                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(display, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
         );
@@ -135,8 +115,49 @@ public class receiveMail extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.store.protocol", "imaps");
+        try{
+            Session session = Session.getDefaultInstance(properties, null);
+            Store store = session.getStore();
+            store.connect("imap.gmail.com","prithvi03012000@gmail.com",password.getText());
+            System.out.println(store);
+            
+            Folder inbox = store.getFolder("Inbox");
+            inbox.open(Folder.READ_ONLY);
+            Message messages[] = inbox.getMessages();
+            Stack<String> ii = new Stack<>();
+            for(Message message : messages){ 
+                //ii.add("_________________________________");
+                //ii.add(String.valueOf(message.getMessageNumber()));
+                //ii.add("    **Subject: " + message.getSubject()+"   **");  
+                //ii.add("    **From: " + message.getFrom()[0]+"  **");  
+                Multipart mp = (Multipart) message.getContent();
+                BodyPart bp = mp.getBodyPart(0);
+                //ii.add("    **SENT DATE:" + message.getSentDate()+" **");
+                ii.push("    **SUBJECT:" + message.getSubject()+"  **");
+                ii.push("CONTENT:" + bp.getContent());
+                
+                //ii.add("___________________________________");
+            }
+            //Iterator io = ii.iterator();
+            //while(io.hasNext()){
+              //  String h = (String) io.next();
+               // display1.setText(h+"\nspam");
+            //}
+            FileWriter fw=new FileWriter("testout.txt");
+fw.write(ii.toString());
+fw.close();
+display1.setText(ii.get(3).toString());
+        }catch(MessagingException e){e.printStackTrace();
+            System.exit(2);}
+        catch(IOException e1){e1.printStackTrace();}
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,11 +196,11 @@ public class receiveMail extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane display;
-    private javax.swing.JLabel display1;
+    private javax.swing.JTextArea display1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,12 @@
+[    **SUBJECT:testing  **, CONTENT:Hello Buddy,
+This mail is just for testing.
+
+-- 
+PRITHVI DEV KANOJIA
+9891691925
+,     **SUBJECT:Another testing  **, CONTENT:This mail is also for testing Buddy. Delete it after sometime.
+
+-- 
+PRITHVI DEV KANOJIA
+9891691925
+]

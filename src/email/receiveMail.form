@@ -48,9 +48,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="username" min="-2" pref="253" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="password" min="-2" pref="253" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="password" min="-2" pref="212" max="-2" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -61,11 +61,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="username" min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="username" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="password" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="display" pref="394" max="32767" attributes="0"/>
@@ -76,19 +76,18 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="username">
           <Properties>
-            <Property name="text" type="java.lang.String" value="prithvidevkanojia1@gmail.com"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="password">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Prithvi@03012000"/>
+            <Property name="text" type="java.lang.String" value="prithvi03012000@gmail.com"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="display">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="display1">
+            <Component class="javax.swing.JTextArea" name="display1">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -98,6 +97,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="password">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Prithvi@03012000"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
